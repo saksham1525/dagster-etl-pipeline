@@ -10,14 +10,16 @@ Parquet files for raw data storage
 
 # Project Structure:
 
+```
 dagster_etl_pipeline/
-├── dagster_essentials/ - Dagster assets and jobs
+├── dagster_essentials/        # Dagster assets and jobs
 ├── data/
-│ ├── raw/ - Contains raw parquet files (not tracked in repo)
-│ └── staging/ - DuckDB file storage (not tracked in repo)
+│   ├── raw/                   # Contains raw Parquet files (not tracked in repo)
+│   └── staging/               # DuckDB file storage (not tracked in repo)
 ├── .gitignore
 ├── README.md
 └── ...
+```
 
 # Missing Files (Not in Repo):
 

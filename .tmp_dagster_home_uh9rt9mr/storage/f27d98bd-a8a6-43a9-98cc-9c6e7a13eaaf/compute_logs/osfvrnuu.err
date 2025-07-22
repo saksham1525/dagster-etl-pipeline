@@ -1,0 +1,24 @@
+[32m2025-07-21 19:13:52 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - f27d98bd-a8a6-43a9-98cc-9c6e7a13eaaf - 44031 - LOGS_CAPTURED - Started capturing logs in process (pid: 44031).
+[32m2025-07-21 19:13:52 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - f27d98bd-a8a6-43a9-98cc-9c6e7a13eaaf - 44031 - adhoc_request - STEP_START - Started execution of step "adhoc_request".
+[32m2025-07-21 19:13:52 +0000[0m - dagster - [34mERROR[0m - [31madhoc_request_job - f27d98bd-a8a6-43a9-98cc-9c6e7a13eaaf - 44031 - adhoc_request - STEP_FAILURE - Execution of step "adhoc_request" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "adhoc_request"::
+
+NameError: name 'context' is not defined
+
+Stack Trace:
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/src/dagster_essentials/defs/assets/requests.py", line 62, in adhoc_request
+    context.log.warning("No numeric data found to plot.")
+    ^^^^^^^
+[0m

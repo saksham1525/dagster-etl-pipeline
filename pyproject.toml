@@ -1,0 +1,48 @@
+[project]
+name = "dagster-essentials"
+version = "0.0.1"
+description = "Dagster Essentials"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+dependencies = [
+    "dagster==1.11",
+    "dagster-dg-cli",
+    "dagster-webserver",
+    "dagster-cloud",
+    "dagster-duckdb",
+    "geopandas",
+    "pandas[parquet]",
+    "shapely",
+    "matplotlib",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+    "pytest",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.dg]
+directory_type = "project"
+
+[tool.dg.project]
+root_module = "dagster_essentials"
+registry_modules = [
+    "dagster_essentials.components.*",
+]
+
+[tool.ruff.lint]
+ignore = [
+    "ERA001", # comments are fine for a learning environment
+    "E501",   # Line too long for docstrings
+    "F401",   # unused imports already caught by pylance
+]
+
+fixable = ["ALL"]
+unfixable = [
+    "F401", # dont remove unused imports
+]

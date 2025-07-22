@@ -1,0 +1,32 @@
+[32m2025-07-21 19:06:45 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 439e08f0-bca8-47d8-80f1-b34f89b5ec6b - 33687 - LOGS_CAPTURED - Started capturing logs in process (pid: 33687).
+[32m2025-07-21 19:06:45 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 439e08f0-bca8-47d8-80f1-b34f89b5ec6b - 33687 - adhoc_request - STEP_START - Started execution of step "adhoc_request".
+[32m2025-07-21 19:06:45 +0000[0m - dagster - [34mERROR[0m - [31madhoc_request_job - 439e08f0-bca8-47d8-80f1-b34f89b5ec6b - 33687 - adhoc_request - STEP_FAILURE - Execution of step "adhoc_request" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "adhoc_request"::
+
+TypeError: no numeric data to plot
+
+Stack Trace:
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/src/dagster_essentials/defs/assets/requests.py", line 61, in adhoc_request
+    results_pivot.plot(kind="bar", stacked=True, ax=ax, colormap="viridis")
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 1030, in __call__
+    return plot_backend.plot(data, kind=kind, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/pandas/plotting/_matplotlib/__init__.py", line 71, in plot
+    plot_obj.generate()
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/pandas/plotting/_matplotlib/core.py", line 499, in generate
+    self._compute_plot_data()
+  File "/workspaces/project-dagster-university/dagster_university/dagster_essentials/.venv/lib/python3.12/site-packages/pandas/plotting/_matplotlib/core.py", line 698, in _compute_plot_data
+    raise TypeError("no numeric data to plot")
+[0m

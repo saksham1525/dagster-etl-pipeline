@@ -1,0 +1,8 @@
+[32m2025-07-21 19:17:47 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - 49652 - LOGS_CAPTURED - Started capturing logs in process (pid: 49652).
+[32m2025-07-21 19:17:47 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - 49652 - adhoc_request - STEP_START - Started execution of step "adhoc_request".
+[32m2025-07-21 19:17:47 +0000[0m - dagster - [34mWARNING[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - adhoc_request - No numeric data found to plot.
+/workspaces/project-dagster-university/dagster_university/dagster_essentials/src/dagster_essentials/defs/assets/requests.py:69: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend(title="Day of Week")
+[32m2025-07-21 19:17:48 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - 49652 - adhoc_request - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-07-21 19:17:48 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - 49652 - adhoc_request - ASSET_MATERIALIZATION - Materialized value adhoc_request.
+[32m2025-07-21 19:17:48 +0000[0m - dagster - [34mDEBUG[0m - adhoc_request_job - 31ace289-b608-49f1-b355-fdf2ed6436d8 - 49652 - adhoc_request - STEP_SUCCESS - Finished execution of step "adhoc_request" in 547ms.

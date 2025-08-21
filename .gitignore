@@ -1,3 +1,62 @@
-# Ignore large files
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dagster
+.tmp_dagster_home*/
+/tmp/
+
+# Virtual Environment (additional)
+venv/
+
+# Data files (large files and generated content)
 data/staging/data.duckdb
-data/raw/taxi_trips_2023-03.parquet
+data/staging/*.geojson
+data/raw/*.parquet
+data/raw/*.csv
+data/outputs/*.png
+data/outputs/*.csv
+
+# Keep directory structure
+!data/raw/.gitkeep
+!data/staging/.gitkeep  
+!data/outputs/.gitkeep

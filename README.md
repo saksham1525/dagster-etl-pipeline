@@ -1,63 +1,104 @@
 # Dagster ETL Pipeline
 
-A robust and modular ETL pipeline built using Dagster, orchestrating data workflows with asset-based design. It uses:
+An ETL pipeline built with Dagster for processing NYC taxi trip data with automated data ingestion, transformations, and analytics.
 
-Dagster for orchestration
+## Architecture
 
-DuckDB as the analytical database
+- **Orchestration**: Dagster with asset-based design
+- **Database**: DuckDB for analytical processing  
+- **Storage**: Parquet files for raw data
+- **Visualization**: GeoPandas + Matplotlib
+- **Scheduling**: Time-based and event-driven execution
 
-Parquet files for raw data storage
+## Data Sources
 
-# Project Structure:
+The pipeline automatically downloads:
 
-```
-dagster_etl_pipeline/
-├── dagster_essentials/        # Dagster assets and jobs
-├── data/
-│   ├── raw/                   # Contains raw Parquet files (not tracked in repo)
-│   └── staging/               # DuckDB file storage (not tracked in repo)
-├── .gitignore
-├── README.md
-└── ...
-```
+- **NYC Taxi Trips** (2023-01 to 2023-03): `https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{YYYY-MM}.parquet`
+- **NYC Taxi Zones**: `https://community-engineering-artifacts.s3.us-west-2.amazonaws.com/dagster-university/data/taxi_zones.csv`
 
-# Missing Files (Not in Repo):
+## Quick Start
 
-Due to GitHub’s file size limits, the following files are not included in the repository:
+### Prerequisites
+- Python 3.9-3.12
+- Git
 
-data/raw/taxi_trips_2023-03.parquet (~53 MB)
+### Recommended Setup
 
-data/staging/data.duckdb (~111 MB)
-
-You will need to download or generate these files manually and place them in the respective folders to run the pipeline locally.
-
-# Getting Started:
-
-Clone the repository:
-git clone https://github.com/saksham1525/dagster-etl-pipeline.git
+```bash
+git clone <your-repo-url>
 cd dagster-etl-pipeline
 
-Set up a virtual environment:
-python -m venv .venv
-source .venv/bin/activate (On Windows: .venv\Scripts\activate)
+# Automated setup (creates venv + installs dependencies)
+python3 setup.py
+
+# Activate environment and start
+source venv/bin/activate
+dagster dev
+```
+
+### Manual Setup
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-Add the required data files:
-Place the .parquet and .duckdb files in the appropriate folders as mentioned above.
-
-Start the Dagster development UI:
+# Start Dagster UI
 dagster dev
+```
 
-Then go to: http://localhost:3000
+Access the Dagster UI at: http://localhost:3000
 
-Deployment:
+## Project Structure
 
-This project can be deployed to Dagster Cloud. Follow their official documentation for setup and CI/CD pipelines.
+```
+src/dagster_essentials/
+├── definitions.py           # Main entry point
+└── defs/
+    ├── assets/              # Data transformation logic
+    ├── jobs.py              # Execution workflows
+    ├── schedules.py         # Automated scheduling
+    ├── sensors.py           # Event-driven execution
+    ├── resources.py         # Database connections
+    └── partitions.py        # Time-based partitioning
+```
 
-# Credits:
+## Features
 
-Originally based on the Dagster University “Dagster Essentials” tutorial, but customized for broader ETL use cases.
+### Automated Workflows
+- **Monthly Updates**: Downloads new taxi data (5th of each month)
+- **Weekly Analytics**: Generates trip statistics (every Monday)  
+- **On-Demand Analysis**: Custom borough reports via JSON requests
 
-# License:
+### Data Processing Flow
+1. Downloads raw Parquet and CSV files
+2. Loads into DuckDB with cleaned schema
+3. Aggregates trips by time periods and geography
+4. Generates maps and analytical charts
 
-MIT License
+### Custom Analysis
+Create JSON files in `data/requests/` directory:
+
+```json
+{
+    "start_date": "2023-01-10",
+    "end_date": "2023-01-25", 
+    "borough": "Manhattan"
+}
+```
+
+Results saved to `data/outputs/`.
+
+## Configuration
+
+**Time Range**: 2023-01-01 to 2023-04-01  
+**Database**: `data/staging/data.duckdb`  
+**Boroughs**: Manhattan, Brooklyn, Queens, Bronx, Staten Island
+
+**Schedules**:
+- Trip Updates: `0 0 5 * *` (Monthly)
+- Weekly Analytics: `0 0 * * 1` (Monday)

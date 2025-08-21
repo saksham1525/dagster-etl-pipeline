@@ -23,23 +23,12 @@ The pipeline automatically downloads:
 - Python 3.9-3.12
 - Git
 
-### Recommended Setup
+### Setup
 
 ```bash
 git clone <your-repo-url>
 cd dagster-etl-pipeline
 
-# Automated setup (creates venv + installs dependencies)
-python3 setup.py
-
-# Activate environment and start
-source venv/bin/activate
-dagster dev
-```
-
-### Manual Setup
-
-```bash
 # Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
@@ -80,16 +69,6 @@ src/dagster_essentials/
 3. Aggregates trips by time periods and geography
 4. Generates maps and analytical charts
 
-### Custom Analysis
-Create JSON files in `data/requests/` directory:
-
-```json
-{
-    "start_date": "2023-01-10",
-    "end_date": "2023-01-25", 
-    "borough": "Manhattan"
-}
-```
 
 Results saved to `data/outputs/`.
 
